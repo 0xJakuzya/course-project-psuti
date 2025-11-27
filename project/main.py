@@ -1,8 +1,9 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from project.app.core.db import get_db
+from fastapi import FastAPI
 
-app = FastAPI()
+app = FastAPI(title="Parking Management System")
 
 @app.get("/")
 async def root():
