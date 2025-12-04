@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
-from project.app.core.db import Base
+from app.core.db import Base
 
 class ParkingSpace(Base):
     __tablename__ = "parking_spaces"
