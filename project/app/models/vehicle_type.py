@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
-from project.app.core.db import Base
+from app.core.db import Base
 
 class VehicleType(Base):
     __tablename__ = "vehicle_types"

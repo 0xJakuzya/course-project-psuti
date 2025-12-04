@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from .config import settings
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
-# echo=True = SQL logging — включать только на dev
+
 engine = create_async_engine(settings.DATABASE_URL.replace("postgresql+psycopg2", "postgresql+asyncpg"), future=True)
 AsyncSessionLocal = async_sessionmaker(bind=engine, expire_on_commit=False)
 

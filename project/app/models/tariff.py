@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, DateTime, DECIMAL
 from sqlalchemy.orm import relationship
 from datetime import datetime
-from project.app.core.db import Base
+from app.core.db import Base
 
 class Tariff(Base):
     __tablename__ = "tariffs"
