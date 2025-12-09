@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система управления автостоянкой</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Система управления автостоянкой</h1>
+            <nav class="main-nav">
+                <button class="nav-btn active" data-section="clients">Клиенты</button>
+                <button class="nav-btn" data-section="vehicles">Транспорт</button>
+                <button class="nav-btn" data-section="parking-spaces">Парковочные места</button>
+                <button class="nav-btn" data-section="tariffs">Тарифы</button>
+                <button class="nav-btn" data-section="sessions">Сессии</button>
+                <button class="nav-btn" data-section="payments">Платежи</button>
+                <button class="nav-btn" data-section="reports">Отчеты</button>
+            </nav>
+        </header>
+
+        <main>
+            <section id="clients" class="section active">
+                <div class="section-header">
+                    <h2>Клиенты</h2>
+                    <button class="btn btn-primary" onclick="showCreateForm('clients')">Создать клиента</button>
+                </div>
+                <div id="clients-table-container"></div>
+                <div id="clients-form-container" class="form-container hidden"></div>
+            </section>
+            <section id="vehicles" class="section">
+                <div class="section-header">
+                    <h2>Транспортные средства</h2>
+                    <button class="btn btn-primary" onclick="showCreateForm('vehicles')">Создать транспорт</button>
+                </div>
+                <div id="vehicles-table-container"></div>
+                <div id="vehicles-form-container" class="form-container hidden"></div>
+            </section>
+            <section id="parking-spaces" class="section">
+                <div class="section-header">
+                    <h2>Парковочные места</h2>
+                    <button class="btn btn-primary" onclick="showCreateForm('parking-spaces')">Создать место</button>
+                </div>
+                <div id="parking-spaces-table-container"></div>
+                <div id="parking-spaces-form-container" class="form-container hidden"></div>
+            </section>
+            <section id="tariffs" class="section">
+                <div class="section-header">
+                    <h2>Тарифы</h2>
+                    <button class="btn btn-primary" onclick="showCreateForm('tariffs')">Создать тариф</button>
+                </div>
+                <div id="tariffs-table-container"></div>
+                <div id="tariffs-form-container" class="form-container hidden"></div>
+            </section>
+            <section id="sessions" class="section">
+                <div class="section-header">
+                    <h2>Сессии парковки</h2>
+                    <button class="btn btn-primary" onclick="showCreateForm('sessions')">Создать сессию</button>
+                </div>
+                <div id="sessions-table-container"></div>
+                <div id="sessions-form-container" class="form-container hidden"></div>
+            </section>
+            <section id="payments" class="section">
+                <div class="section-header">
+                    <h2>Платежи</h2>
+                    <button class="btn btn-primary" onclick="showCreateForm('payments')">Создать платеж</button>
+                </div>
+                <div id="payments-table-container"></div>
+                <div id="payments-form-container" class="form-container hidden"></div>
+            </section>
+            <section id="reports" class="section">
+                <div class="section-header">
+                    <h2>Отчеты и аналитика</h2>
+                    <div>
+                        <label>Период: </label>
+                        <select id="period-select" onchange="loadDashboard()">
+                            <option value="day">День</option>
+                            <option value="week">Неделя</option>
+                            <option value="month" selected>Месяц</option>
+                        </select>
+                        <button class="btn btn-primary" onclick="loadDashboard()" style="margin-left: 10px;">Обновить</button>
+                    </div>
+                </div>
+                
+                <div class="dashboard-metrics">
+                    <div class="metric-card">
+                        <h3>Общая выручка</h3>
+                        <p class="metric-value" id="total-revenue">0 ₽</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Всего сессий</h3>
+                        <p class="metric-value" id="total-sessions">0</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Средний чек</h3>
+                        <p class="metric-value" id="average-check">0 ₽</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Активных сессий</h3>
+                        <p class="metric-value" id="active-sessions">0</p>
+                    </div>
+                    <div class="metric-card">
+                        <h3>Свободных мест</h3>
+                        <p class="metric-value" id="free-spaces">0</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-charts">
+                    <div class="chart-container">
+                        <h3>Выручка по периодам</h3>
+                        <canvas id="revenue-chart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Количество сессий по периодам</h3>
+                        <canvas id="sessions-chart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div id="notification" class="notification hidden"></div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
+
