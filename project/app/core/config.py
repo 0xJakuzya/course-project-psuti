@@ -3,7 +3,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
 
     APP_NAME: str = "QuickLead Manager"
-    ENVIRONMENT: str = "development"
+    ENVIRONMENT: str = "development"	
     POSTGRES_HOST: str
     POSTGRES_PORT: int
     POSTGRES_USER: str

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: postgres:18
+        image: postgres:15
         ports:
         - containerPort: 5432
         envFrom:
@@ -44,9 +44,10 @@ spec:
     spec:
       containers:
       - name: parking-app
-        image: parking-app
+        image: parking-app:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8000
-        env:
-        - name: DATABASE_URL
-          value: postgresql+asyncpg://postgres:postgres@postgres:5432/parking_db
+        envFrom:
+        - secretRef:
+            name: postgres-secret

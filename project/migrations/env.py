@@ -1,14 +1,9 @@
-import sys
-import os
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-
 from logging.config import fileConfig
 from sqlalchemy import engine_from_config, pool
 from alembic import context
-from project.app.core.db import Base
-from project.app.core.config import settings
-from project.app.models import *
+from app.core.db import Base
+from app.core.config import settings
+from app.models import *
 
 print("DB URL:", settings.DATABASE_URL)
 
