@@ -1,0 +1,28 @@
+# =======================
+# PostgreSQL Service
+# =======================
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+  - port: 5432
+
+---
+# =======================
+# FastAPI Service
+# =======================
+apiVersion: v1
+kind: Service
+metadata:
+  name: parking-app
+spec:
+  type: NodePort
+  selector:
+    app: parking-app
+  ports:
+  - port: 8000
+    targetPort: 8000
