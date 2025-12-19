@@ -1,0 +1,52 @@
+# =======================
+# PostgreSQL Deployment
+# =======================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:18
+        ports:
+        - containerPort: 5432
+        envFrom:
+        - secretRef:
+            name: postgres-secret
+
+---
+# =======================
+# FastAPI Deployment
+# =======================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: parking-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: parking-app
+  template:
+    metadata:
+      labels:
+        app: parking-app
+    spec:
+      containers:
+      - name: parking-app
+        image: parking-app
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          value: postgresql+asyncpg://postgres:postgres@postgres:5432/parking_db
